@@ -9,6 +9,7 @@
 app5.js | プログラム本体
 public/janken.html | じゃんけんの開始画面
 
+# 使用手順
 ```mermaid
 flowchart TD;
 
