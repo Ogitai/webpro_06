@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>占い結果</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .fortune {
+            font-size: 24px;
+            color: #4CAF50;
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>今日の占い</h1>
+    
+    <% if (fortunetelling) { %>
+        <div class="fortune">
+            <strong>あなたの運勢は: <%= fortunetelling %></strong>
+        </div>
+    <% } else { %>
+        <div class="fortune">
+            <strong>運勢を占ってください。</strong>
+        </div>
+    <% } %>
+
+    <form action="/fortune-telling" method="get">
+        <button type="submit">再度占う</button>
+    </form>
+</body>
+</html>
