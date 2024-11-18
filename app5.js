@@ -41,16 +41,16 @@ app.get("/janken", (req, res) => {
 });
 
 // 運勢占いのルート
-app.get("/fortune", (req, res) => {
+app.get("/fortune telling", (req, res) => {
   const fortunes = ["大吉", "中吉", "小吉", "凶", "大凶"];
   const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
-  res.render('fortune', { fortune: randomFortune });
+  res.render('fortune telling', { fortunetelling: randomFortune });
 });
 
 // 数当てゲームのルート
 let secretNumber = Math.floor(Math.random() * 10) + 1;
 
-app.get("/number-guess", (req, res) => {
+app.get("/guessing game", (req, res) => {
   const userGuess = Number(req.query.guess);
   let message = '';
 
@@ -63,7 +63,7 @@ app.get("/number-guess", (req, res) => {
     message = "もっと小さな数字です。";
   }
 
-  res.render('number-guess', { message: message, secretNumber: secretNumber });
+  res.render('guessing game', { message: message, secretNumber: secretNumber });
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
