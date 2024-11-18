@@ -49,10 +49,12 @@ app.get("/fortune-telling", (req, res) => {
   
   res.render('fortuneTelling', { fortunetelling: randomFortune }, (err) => {
     if (err) {
-      res.status(500).send("テンプレートのレンダリング中にエラーが発生しました。");
+      console.error(err); // エラーの詳細をコンソールに出力
+      return res.status(500).send("テンプレートのレンダリング中にエラーが発生しました。");
     }
   });
 });
+
 
 // 数当てゲームのルート
 let secretNumber = Math.floor(Math.random() * 10) + 1;
