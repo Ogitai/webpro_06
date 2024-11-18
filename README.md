@@ -8,8 +8,8 @@
 |----------------------------|---------------------------------|
 | `app5.js`                  | プログラム本体                    　|
 | `views/janken.ejs`         | じゃんけんの開始画面                 |
-| `views/fortune telling.ejs`| 運勢占い開始画面              　　　　|
-| `views/guessing game.ejs`  | 数字当てゲーム開始画面              　|
+| `views/fortune.ejs`　　　　  | 運勢占い開始画面              　　　　|
+| `views/number-guess.ejs`   | 数字当てゲーム開始画面              　|
 
 
 ## 起動方法
