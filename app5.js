@@ -18,14 +18,6 @@ app.get("/icon", (req, res) => {
   res.render('icon', { filename: "./public/Apple_logo_black.svg", alt: "Apple Logo" });
 });
 
-app.get("/luck", (req, res) => {
-  const num = Math.floor(Math.random() * 6 + 1);
-  let luck = '';
-  if (num == 1) luck = '大吉';
-  else if (num == 2) luck = '中吉';
-  console.log('あなたの運勢は' + luck + 'です');
-  res.render('luck', { number: num, luck: luck });
-});
 
 app.get("/janken", (req, res) => {
   let hand = req.query.hand;
@@ -33,14 +25,12 @@ app.get("/janken", (req, res) => {
   let total = Number(req.query.total);
   console.log({ hand, win, total });
   
-  // CPUの手をランダムに選択
   const num = Math.floor(Math.random() * 3 + 1);
   let cpu = '';
   if (num == 1) cpu = 'グー';
   else if (num == 2) cpu = 'チョキ';
   else cpu = 'パー';
 
-  // 勝敗の判定ロジック
   let judgement = '';
   if (hand === cpu) {
     judgement = '引き分け';
@@ -50,12 +40,12 @@ app.get("/janken", (req, res) => {
     (hand === 'パー' && cpu === 'グー')
   ) {
     judgement = '勝ち';
-    win += 1; // 勝った場合、勝利数をカウントアップ
+    win += 1;
   } else {
     judgement = '負け';
   }
 
-  total += 1; // 試合数をカウントアップ
+  total += 1;
 
   const display = {
     your: hand,
@@ -65,6 +55,32 @@ app.get("/janken", (req, res) => {
     total: total
   };
   res.render('janken', display);
+});
+
+// 運勢占いのルート
+app.get("/fortune", (req, res) => {
+  const fortunes = ["大吉", "中吉", "小吉", "凶", "大凶"];
+  const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+  res.render('fortune', { fortune: randomFortune });
+});
+
+// 数当てゲームのルート
+let secretNumber = Math.floor(Math.random() * 10) + 1;
+
+app.get("/number-guess", (req, res) => {
+  const userGuess = Number(req.query.guess);
+  let message = '';
+
+  if (userGuess === secretNumber) {
+    message = "正解！おめでとうございます！";
+    secretNumber = Math.floor(Math.random() * 10) + 1; // 新しい数字を生成
+  } else if (userGuess < secretNumber) {
+    message = "もっと大きな数字です。";
+  } else {
+    message = "もっと小さな数字です。";
+  }
+
+  res.render('number-guess', { message: message, secretNumber: secretNumber });
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
