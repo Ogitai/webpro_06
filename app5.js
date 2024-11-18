@@ -41,20 +41,27 @@ app.get("/janken", (req, res) => {
 });
 
 // 運勢占いのルート
-app.get("/fortune telling", (req, res) => {
+app.get("/fortune-telling", (req, res) => {
   const fortunes = ["大吉", "中吉", "小吉", "凶", "大凶"];
   const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
-  res.render('fortune telling', { fortunetelling: randomFortune });
+  
+  res.render('fortuneTelling', { fortunetelling: randomFortune }, (err) => {
+    if (err) {
+      res.status(500).send("テンプレートのレンダリング中にエラーが発生しました。");
+    }
+  });
 });
 
 // 数当てゲームのルート
 let secretNumber = Math.floor(Math.random() * 10) + 1;
 
-app.get("/guessing game", (req, res) => {
+app.get("/guessing-game", (req, res) => {
   const userGuess = Number(req.query.guess);
   let message = '';
 
-  if (userGuess === secretNumber) {
+  if (isNaN(userGuess)) {
+    message = "数字を入力してください。";
+  } else if (userGuess === secretNumber) {
     message = "正解！おめでとうございます！";
     secretNumber = Math.floor(Math.random() * 10) + 1; // 新しい数字を生成
   } else if (userGuess < secretNumber) {
@@ -63,7 +70,11 @@ app.get("/guessing game", (req, res) => {
     message = "もっと小さな数字です。";
   }
 
-  res.render('guessing game', { message: message, secretNumber: secretNumber });
+  res.render('guessingGame', { message: message, secretNumber: secretNumber }, (err) => {
+    if (err) {
+      res.status(500).send("テンプレートのレンダリング中にエラーが発生しました。");
+    }
+  });
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
