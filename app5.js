@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
 
 app.get("/janken", (req, res) => {
   let hand = req.query.hand;
