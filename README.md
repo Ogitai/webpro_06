@@ -17,8 +17,8 @@
 1. ターミナルでnode app5.jsでサーバー8080を立ち上げる
 2. その後ブラウザでそれぞれのURLを入力する
 3. じゃんけん　：http://localhost:8080/janken?hand=グー&win=0&total=0
-4. 占い　　　　：http://localhost:8080/fortunetelling
-5. 数当てゲーム：http://localhost:8080/guessinggame?guess=5
+4. 占い　　　　：http://localhost:8080/fortune
+5. 数当てゲーム：http://localhost:8080/number-guess?guess=5
 
 
 
