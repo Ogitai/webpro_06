@@ -4,12 +4,12 @@
 
 ## ファイル一覧
 
-| ファイル名              | 説明                               |
-|-------------------------|------------------------------------|
-| `app5.js`               | プログラム本体                     |
-| `views/janken.ejs`      | じゃんけんの開始画面               　|
-| `views/fortune.ejs`　 　 | 運勢占い開始画面              　　　 |
-| `views/number-guess.ejs`| 数字当てゲーム開始画面               |
+| ファイル名              | 説明                                 　|
+|----------------------------|---------------------------------|
+| `app5.js`                  | プログラム本体                    　|
+| `views/janken.ejs`         | じゃんけんの開始画面                 |
+| `views/fortune telling.ejs`| 運勢占い開始画面              　　　　|
+| `views/guessing game.ejs`  | 数字当てゲーム開始画面              　|
 
 
 ## 起動方法
@@ -17,8 +17,8 @@
 1. ターミナルでnode app5.jsでサーバー8080を立ち上げる
 2. その後ブラウザでそれぞれのURLを入力する
 3. じゃんけん　：http://localhost:8080/janken?hand=グー&win=0&total=0
-4. 占い　　　　：http://localhost:8080/fortune
-5. 数当てゲーム：http://localhost:8080/number-guess?guess=5
+4. 占い　　　　：http://localhost:8080/fortune telling
+5. 数当てゲーム：http://localhost:8080/guessing game?guess=5
 
 
 
