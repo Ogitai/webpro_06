@@ -2,7 +2,30 @@ const express = require("express");
 const app = express();
 
 app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');
+app.use("/public", express.static(__dirname + "/public"));
+
+app.get("/hello1", (req, res) => {
+  const message1 = "Hello world";
+  const message2 = "Bon jour";
+  res.render('show', { greet1: message1, greet2: message2 });
+});
+
+app.get("/hello2", (req, res) => {
+  res.render('show', { greet1: "Hello world", greet2: "Bon jour" });
+});
+
+app.get("/icon", (req, res) => {
+  res.render('icon', { filename: "./public/Apple_logo_black.svg", alt: "Apple Logo" });
+});
+
+app.get("/luck", (req, res) => {
+  const num = Math.floor(Math.random() * 6 + 1);
+  let luck = '';
+  if (num == 1) luck = '大吉';
+  else if (num == 2) luck = '中吉';
+  console.log('あなたの運勢は' + luck + 'です');
+  res.render('luck', { number: num, luck: luck });
+});
 
 app.get("/janken", (req, res) => {
   let hand = req.query.hand;
@@ -43,29 +66,20 @@ app.get("/janken", (req, res) => {
 });
 
 // 運勢占いのルート
-app.get("/fortune-telling", (req, res) => {
+app.get("/fortune", (req, res) => {
   const fortunes = ["大吉", "中吉", "小吉", "凶", "大凶"];
   const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
-  
-  res.render('fortuneTelling', { fortunetelling: randomFortune }, (err) => {
-    if (err) {
-      console.error(err); // エラーの詳細をコンソールに出力
-      return res.status(500).send("テンプレートのレンダリング中にエラーが発生しました。");
-    }
-  });
+  res.render('fortune', { fortune: randomFortune });
 });
-
 
 // 数当てゲームのルート
 let secretNumber = Math.floor(Math.random() * 10) + 1;
 
-app.get("/guessing-game", (req, res) => {
+app.get("/number-guess", (req, res) => {
   const userGuess = Number(req.query.guess);
   let message = '';
 
-  if (isNaN(userGuess)) {
-    message = "数字を入力してください。";
-  } else if (userGuess === secretNumber) {
+  if (userGuess === secretNumber) {
     message = "正解！おめでとうございます！";
     secretNumber = Math.floor(Math.random() * 10) + 1; // 新しい数字を生成
   } else if (userGuess < secretNumber) {
@@ -74,11 +88,7 @@ app.get("/guessing-game", (req, res) => {
     message = "もっと小さな数字です。";
   }
 
-  res.render('guessingGame', { message: message, secretNumber: secretNumber }, (err) => {
-    if (err) {
-      res.status(500).send("テンプレートのレンダリング中にエラーが発生しました。");
-    }
-  });
+  res.render('number-guess', { message: message, secretNumber: secretNumber });
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
