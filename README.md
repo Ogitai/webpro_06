@@ -8,8 +8,8 @@
 |-------------------------|------------------------------------|
 | `app5.js`               | プログラム本体                     |
 | `views/janken.ejs`      | じゃんけんの開始画面               　|
-| `views/number-guess.ejs`| サイコロの結果表示画面               |
-| `views/fortune.ejs`     | 占いの名前入力画面                  |
+| `views/fortune.ejs`　 　 | 運勢占い開始画面              　　　 |
+| `views/number-guess.ejs`| 数字当てゲーム開始画面               |
 
 
 ## 起動方法
@@ -22,25 +22,22 @@
 
 
 
+
+## じゃんけんのフローチャート
 ```mermaid
 flowchart TD;
-    start["開始"] --> choose["手を選択"];
-    choose --> compare{"勝敗の判定"};
-    compare -->|勝ち| win["勝利"];
-    compare -->|負け| lose["敗北"];
-    compare -->|引き分け| draw["引き分け"];
-    win --> end1["終了"];
-    lose --> end1;
-    draw --> end1;
+    
  ```
+## 運勢占いのフローチャート
 ```mermaid
  flowchart TD;
-    start["開始"] --> input["目数を入力"];
-    input --> roll["ランダムな目を生成"];
-    roll --> display["結果を表示"];
-    display --> end1["終了"];
- ```
-
+    A[開始] --> B{運勢を占う};
+    B --> C[運勢リストを用意];
+    C --> D[ランダムに運勢を選択];
+    D --> E[選ばれた運勢を表示];
+    E --> F[終了];
+ ```   
+## 数字当てゲームのフローチャート
 ```mermaid
 flowchart TD;
     start["開始"] --> input["名前を入力"];
