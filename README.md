@@ -15,12 +15,19 @@
 ## 起動方法
 
 1.ターミナルで node app5.js を実行し、サーバー8080を立ち上げる。
+
 2.その後、ブラウザで以下のURLを入力する。
+
 3.じゃんけん：http://localhost:8080/janken?hand=グー&win=0&total=0
+
  ・選んだ手とCPUの手に基づいて結果を計算し、public/janken.html に反映する。
+ 
 4.占い：http://localhost:8080/fortune
+
 　・ランダムに今日の運勢を表示する。
+ 
 5.数当てゲーム：http://localhost:8080/number-guess?guess=5
+
 　・入力した数字とランダムに生成された数字を比較し、結果を表示する。
 
 
