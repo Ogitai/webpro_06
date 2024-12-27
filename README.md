@@ -10,15 +10,19 @@
 | `views/janken.ejs`         | じゃんけんの開始画面                 |
 | `views/fortune.ejs`　　　　  | 運勢占い開始画面              　　　　|
 | `views/number-guess.ejs`   | 数字当てゲーム開始画面              　|
-
+| `public/janken.html`       | じゃんけんの結果表示用HTMLファイル    　|
 
 ## 起動方法
 
-1. ターミナルでnode app5.jsでサーバー8080を立ち上げる
-2. その後ブラウザでそれぞれのURLを入力する
-3. じゃんけん　：http://localhost:8080/janken?hand=グー&win=0&total=0
-4. 占い　　　　：http://localhost:8080/fortune
-5. 数当てゲーム：http://localhost:8080/number-guess?guess=5
+1.ターミナルで node app5.js を実行し、サーバー8080を立ち上げる。
+2.その後、ブラウザで以下のURLを入力する。
+3.じゃんけん：http://localhost:8080/janken?hand=グー&win=0&total=0
+ ・選んだ手とCPUの手に基づいて結果を計算し、public/janken.html に反映する。
+4.占い：http://localhost:8080/fortune
+　・ランダムに今日の運勢を表示する。
+5.数当てゲーム：http://localhost:8080/number-guess?guess=5
+　・入力した数字とランダムに生成された数字を比較し、結果を表示する。
+
 
 
 
@@ -36,7 +40,8 @@ flowchart TD;
     E --> I;
     H --> I;
     I --> J[結果を表示];
-    J --> K[終了];
+    J --> L[public/janken.htmlで結果を反映];
+    L --> K[終了];
  ```
 ## 運勢占いのフローチャート
 ```mermaid
